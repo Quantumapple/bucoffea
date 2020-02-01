@@ -243,8 +243,8 @@ def setup_candidates(df, cfg):
     electrons = JaggedCandidateArray.candidatesfromcounts(
         df['nElectron'],
         pt=df['Electron_pt'],
-        eta=df['Electron_eta'],
-        abseta=np.abs(df['Electron_eta']),
+        eta=df['Electron_eta']+df['Electron_deltaEtaSC'],
+        abseta=np.abs(df['Electron_eta']+df['Electron_deltaEtaSC']),
         phi=df['Electron_phi'],
         mass=0 * df['Electron_pt'],
         charge=df['Electron_charge'],
