@@ -428,6 +428,10 @@ class vbfhinvProcessor(processor.ProcessorABC):
             ezfill('ak4_eta',    jeteta=ak4[mask].eta.flatten(), weight=w_alljets)
             ezfill('ak4_phi',    jetphi=ak4[mask].phi.flatten(), weight=w_alljets)
             ezfill('ak4_pt',     jetpt=ak4[mask].pt.flatten(),   weight=w_alljets)
+            ezfill('hemak4_pt',  pt=df['hemveto_pt'][mask],   weight=region_weights.weight()[mask])
+            ezfill('hemak4_ht',  pt=df['hemveto_ht'][mask],   weight=region_weights.weight()[mask])
+            ezfill('hemak4_pt_had',  pt=df['hemveto_pt_had'][mask],   weight=region_weights.weight()[mask])
+            ezfill('hemak4_ht_had',  pt=df['hemveto_ht_had'][mask],   weight=region_weights.weight()[mask])
 
             ezfill('ak4_eta_nopref',    jeteta=ak4[mask].eta.flatten(), weight=w_alljets_nopref)
             ezfill('ak4_phi_nopref',    jetphi=ak4[mask].phi.flatten(), weight=w_alljets_nopref)

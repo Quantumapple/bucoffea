@@ -342,6 +342,10 @@ def setup_candidates(df, cfg):
         (-1.57 < ak4.phi) &
         (ak4.phi < -0.87)
         ]
+    df['hemveto_pt'] = hem_ak4.pt.max()
+    df['hemveto_ht'] = hem_ak4.pt.sum()
+    df['hemveto_pt_had'] = (hem_ak4.pt * (hem_ak4.nhf + hem_ak4.chf)).max()
+    df['hemveto_ht_had'] = (hem_ak4.pt * (hem_ak4.nhf + hem_ak4.chf)).sum()
     df['hemveto'] = hem_ak4.counts == 0
 
     # B jets have their own overlap cleaning,

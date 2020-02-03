@@ -43,6 +43,8 @@ def vbfhinv_accumulator(cfg):
     dr_ax = Bin("dr", r"$\Delta R$", 50, 0, 2)
 
     pt_ax = Bin("pt", r"$p_{T}$ (GeV)", 100, 0, 1000)
+    pt_ax_low = Bin("pt", r"$p_{T}$ (GeV)", 20, 0, 200)
+    ht_ax_low = Bin("ht", r"$H_{T}$ (GeV)", 20, 0, 200)
     ht_ax = Bin("ht", r"$H_{T}$ (GeV)", 100, 0, 4000)
     mt_ax = Bin("mt", r"$M_{T}$ (GeV)", 100, 0, 1000)
     eta_ax = Bin("eta", r"$\eta$", 50, -5, 5)
@@ -98,6 +100,11 @@ def vbfhinv_accumulator(cfg):
     items["ak4_pt0_nhf0"] = Hist("Counts", dataset_ax, region_ax, jet_pt_ax_coarse, frac_ax)
     items["ak4_pt0_nconst0"] = Hist("Counts", dataset_ax, region_ax, jet_pt_ax_coarse, nconst_ax)
     items["ak4_pt0_eta0"] = Hist("Counts", dataset_ax, region_ax, jet_pt_ax,jet_eta_ax_coarse)
+
+    items["hemak4_pt"] = Hist("Counts", dataset_ax, region_ax, pt_ax_low)
+    items["hemak4_ht"] = Hist("Counts", dataset_ax, region_ax, ht_ax_low)
+    items["hemak4_pt_had"] = Hist("Counts", dataset_ax, region_ax, pt_ax_low)
+    items["hemak4_ht_had"] = Hist("Counts", dataset_ax, region_ax, ht_ax_low)
 
     items["ak4_pt"] = Hist("Counts", dataset_ax, region_ax, jet_pt_ax)
     items["ak4_eta"] = Hist("Counts", dataset_ax, region_ax, jet_eta_ax)
