@@ -195,7 +195,6 @@ def vbfhinv_regions(cfg):
         'veto_ele',
         'veto_muo',
         'filt_met',
-        'hemveto',
         'mindphijr',
         'recoil',
         'two_jets',
