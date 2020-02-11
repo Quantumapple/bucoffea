@@ -36,6 +36,7 @@ def monojet_accumulator(cfg):
     multiplicity_ax = Bin("multiplicity", r"multiplicity", 10, -0.5, 9.5)
     dphi_ax = Bin("dphi", r"$\Delta\phi$", 50, 0, 3.5)
     dr_ax = Bin("dr", r"$\Delta R$", 50, 0, 2)
+    dr_ax_short = Bin("dr", r"$\Delta R$", 50, 0, 1)
 
     dxy_ax = Bin("dxy", r"$d_{xy}$", 20, 0, 0.5)
     dz_ax = Bin("dz", r"$d_{z}$", 20, 0, 0.5)
@@ -167,6 +168,7 @@ def monojet_accumulator(cfg):
     items["photon_eta_phi"] = Hist("Counts", dataset_ax, region_ax, eta_ax_coarse, phi_ax_coarse)
 
     items['drphotonjet'] = Hist("Counts", dataset_ax, region_ax, dr_ax)
+    items['drphotonele'] = Hist("Counts", dataset_ax, region_ax, dr_ax_short)
     items['drelejet'] = Hist("Counts", dataset_ax, region_ax, dr_ax)
     items['drmuonjet'] = Hist("Counts", dataset_ax, region_ax, dr_ax)
 
@@ -496,6 +498,13 @@ def monojet_regions(cfg):
                 noMistagRegionName = region.replace('_v', '_nomistag_'+ wp + '_v')
                 regions[noMistagRegionName]=copy.deepcopy(regions[newRegionName])
 
+    for region in ['cr_1e_j','cr_2e_j']:
+        for cut in [0.01,0.05,0.1,0.3,0.5]:
+            tmp = copy.deepcopy(regions[region])
+            cutstring = str(cut).replace('.','p')
+            tmp.append(f'drphotonele{cutstring}')
+            new_region = f"{region}_drphotonele{cutstring}"
+            regions[new_region] = tmp
 
     if cfg.RUN.TRIGGER_STUDY:
         # Trigger studies

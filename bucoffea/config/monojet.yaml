@@ -88,7 +88,7 @@ default:
         clean: true
         dr: 0.5
       electron:
-        clean: true
+        clean: false
         dr: 0.5
     tau:
       muon:

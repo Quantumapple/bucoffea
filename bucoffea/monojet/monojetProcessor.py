@@ -190,6 +190,9 @@ class monojetProcessor(processor.ProcessorABC):
         phojet_pairs = ak4[:,:1].cross(photons[:,:1])
         df['dRPhotonJet'] = np.hypot(phojet_pairs.i0.eta-phojet_pairs.i1.eta , dphi(phojet_pairs.i0.phi,phojet_pairs.i1.phi)).min()
 
+        phoele_pairs = electrons.cross(photons)
+        df['dRPhotonEle'] = np.hypot(phoele_pairs.i0.eta-phoele_pairs.i1.eta , dphi(phoele_pairs.i0.phi,phoele_pairs.i1.phi)).min()
+
         # Recoil
         df['recoil_pt'], df['recoil_phi'] = recoil(met_pt,met_phi, electrons, muons, photons)
         df["dPFCalo"] = (met_pt - df["CaloMET_pt"]) / df["recoil_pt"]
@@ -215,6 +218,10 @@ class monojetProcessor(processor.ProcessorABC):
         selection.add('mindphijm',df['minDPhiJetMet'] > cfg.SELECTION.SIGNAL.MINDPHIJR)
         selection.add('dpfcalo',np.abs(df['dPFCalo']) < cfg.SELECTION.SIGNAL.DPFCALO)
         selection.add('recoil', df['recoil_pt']>cfg.SELECTION.SIGNAL.RECOIL)
+
+        for cut in [0.01,0.05,0.1,0.3,0.5]:
+            cutstring = str(cut).replace('.','p')
+            selection.add(f'drphotonele{cutstring}',df['dRPhotonEle'] > cut)
 
         if(cfg.MITIGATION.HEM and extract_year(df['dataset']) == 2018 and not cfg.RUN.SYNC):
             selection.add('hemveto', df['hemveto'])
@@ -475,6 +482,7 @@ class monojetProcessor(processor.ProcessorABC):
             ezfill('drelejet',    dr=df['dREleJet'][mask],      weight=region_weights.weight()[mask])
             ezfill('drmuonjet',    dr=df['dRMuonJet'][mask],      weight=region_weights.weight()[mask])
             ezfill('drphotonjet',    dr=df['dRPhotonJet'][mask],  weight=region_weights.weight()[mask])
+            ezfill('drphotonele',    dr=df['dRPhotonEle'][mask],  weight=region_weights.weight()[mask])
 
             # AK8 jets
             if region=='inclusive' or region.endswith('v'):
@@ -542,7 +550,8 @@ class monojetProcessor(processor.ProcessorABC):
 
             if 'noveto' in region:
                 continue
-
+            if 'drphoton' in region:
+                continue
             # Muons
             if '_1m_' in region or '_2m_' in region:
                 w_allmu = weight_shape(muons.pt[mask], region_weights.weight()[mask])
