@@ -191,7 +191,7 @@ class monojetProcessor(processor.ProcessorABC):
         df['dRPhotonJet'] = np.hypot(phojet_pairs.i0.eta-phojet_pairs.i1.eta , dphi(phojet_pairs.i0.phi,phojet_pairs.i1.phi)).min()
 
         phoele_pairs = electrons.cross(photons)
-        df['dRPhotonEle'] = np.hypot(phoele_pairs.i0.eta-phoele_pairs.i1.eta , dphi(phoele_pairs.i0.phi,phoele_pairs.i1.phi)).min()
+        df['dRPhotonEle'] = np.hypot(phoele_pairs.i0.eta-phoele_pairs.i1.eta , dphi(phoele_pairs.i0.phi,phoele_pairs.i1.phi)).max()
 
         # Recoil
         df['recoil_pt'], df['recoil_phi'] = recoil(met_pt,met_phi, electrons, muons, photons)
@@ -221,7 +221,7 @@ class monojetProcessor(processor.ProcessorABC):
 
         for cut in [0.01,0.05,0.1,0.3,0.5]:
             cutstring = str(cut).replace('.','p')
-            selection.add(f'drphotonele{cutstring}',df['dRPhotonEle'] > cut)
+            selection.add(f'drphotonele{cutstring}',df['dRPhotonEle'] < cut)
 
         if(cfg.MITIGATION.HEM and extract_year(df['dataset']) == 2018 and not cfg.RUN.SYNC):
             selection.add('hemveto', df['hemveto'])
