@@ -503,6 +503,7 @@ def monojet_regions(cfg):
             tmp = copy.deepcopy(regions[region])
             cutstring = str(cut).replace('.','p')
             tmp.append(f'drphotonele{cutstring}')
+            tmp.remove("veto_photon")
             new_region = f"{region}_drphotonele{cutstring}"
             regions[new_region] = tmp
 
