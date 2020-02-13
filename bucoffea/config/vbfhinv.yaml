@@ -295,13 +295,13 @@ era2016:
         file: data/sf/trigger/trig_sf_vbf.root
     trigger_electron:
       histogram: EGamma_SF2D
-      file: data/sf/trigger/electron_trigger_sf_2017.root
+      file: data/sf/trigger/SF_HLT_Ele35_WPTight_Gsf_2017.root
     trigger_electron_eff_data:
       histogram: EGamma_EffData2D
-      file: data/sf/trigger/electron_trigger_sf_2017.root
+      file: data/sf/trigger/SF_HLT_Ele35_WPTight_Gsf_2017.root
     trigger_electron_eff_mc:
       histogram: EGamma_EffMC2D
-      file: data/sf/trigger/electron_trigger_sf_2017.root
+      file: data/sf/trigger/SF_HLT_Ele35_WPTight_Gsf_2017.root
 
   filters:
     data:
@@ -417,13 +417,13 @@ era2017:
       file: data/sf/trigger/trig_sf_vbf.root
     trigger_electron:
       histogram: EGamma_SF2D
-      file: data/sf/trigger/electron_trigger_sf_2017.root
+      file: data/sf/trigger/SF_HLT_Ele35_WPTight_Gsf_2017.root
     trigger_electron_eff_data:
       histogram: EGamma_EffData2D
-      file: data/sf/trigger/electron_trigger_sf_2017.root
+      file: data/sf/trigger/SF_HLT_Ele35_WPTight_Gsf_2017.root
     trigger_electron_eff_mc:
       histogram: EGamma_EffMC2D
-      file: data/sf/trigger/electron_trigger_sf_2017.root
+      file: data/sf/trigger/SF_HLT_Ele35_WPTight_Gsf_2017.root
 
 era2018:
   triggers:
@@ -537,10 +537,10 @@ era2018:
       file: data/sf/trigger/trig_sf_vbf.root
     trigger_electron:
       histogram: EGamma_SF2D
-      file: data/sf/trigger/electron_trigger_sf_2018.root
+      file: data/sf/trigger/SF_HLT_Ele32_WPTight_Gsf_2018.root
     trigger_electron_eff_data:
       histogram: EGamma_EffData2D
-      file: data/sf/trigger/electron_trigger_sf_2018.root
+      file: data/sf/trigger/SF_HLT_Ele32_WPTight_Gsf_2018.root
     trigger_electron_eff_mc:
       histogram: EGamma_EffMC2D
-      file: data/sf/trigger/electron_trigger_sf_2018.root
+      file: data/sf/trigger/SF_HLT_Ele32_WPTight_Gsf_2018.root
